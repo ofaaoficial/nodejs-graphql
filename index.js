@@ -1,29 +1,27 @@
 'use strict';
 
-const {graphql, buildSchema} = require('graphql');
+const {buildSchema} = require('graphql');
 const express = require('express');
 const gqlMiddleware = require('express-graphql');
-
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+const {readFileSync} = require('fs');
+const {join} = require('path');
+const resolvers = require('./lib/resolvers');
+
 // Definicion de esquema
 
 // Scalares por defecto String, Int, Float y Boolean.
-const schema = buildSchema(`
-    type Query {
-        hello: String
-        greeting: String
-    }
-`);
 
-// Configuracion de resolvers
-
-const resolvers = {
-    hello: () => 'Hello world!',
-    greeting: () => 'Hello everybody!',
-};
+// Leear esquemas de archivos independientes '.graphql'
+const schema = buildSchema(
+    readFileSync(
+        join(__dirname, 'lib', 'schema.graphql'),
+        'utf-8'
+    )
+);
 
 // Ejecutando el query hello
 // graphql(schema, '{ hello greeting }', resolvers)
