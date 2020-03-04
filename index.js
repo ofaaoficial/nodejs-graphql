@@ -8,11 +8,19 @@ const {graphql, buildSchema} = require('graphql');
 const schema = buildSchema(`
     type Query {
         hello: String
+        greeting: String
     }
 `);
 
+// Configuracion de resolvers
+
+const resolvers = {
+    hello: () => 'Hello world!',
+    greeting: () => 'Hello everybody!',
+};
+
 // Ejecutando el query hello
-graphql(schema, '{ hello }')
+graphql(schema, '{ hello greeting }', resolvers)
     .then(r => {
         console.log(r);
     });
