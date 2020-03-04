@@ -1,6 +1,6 @@
 'use strict';
 
-const {buildSchema} = require('graphql');
+const {makeExecutableSchema} = require('graphql-tools');
 const express = require('express');
 const gqlMiddleware = require('express-graphql');
 
@@ -15,13 +15,16 @@ const resolvers = require('./lib/resolvers');
 
 // Scalares por defecto String, Int, Float y Boolean.
 
-// Leear esquemas de archivos independientes '.graphql'
-const schema = buildSchema(
-    readFileSync(
-        join(__dirname, 'lib', 'schema.graphql'),
-        'utf-8'
-    )
+const typeDefs = readFileSync(
+    join(__dirname, 'lib', 'schema.graphql'),
+    'utf-8'
 );
+
+// Leear esquemas de archivos independientes '.graphql'
+const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers
+});
 
 // Ejecutando el query hello
 // graphql(schema, '{ hello greeting }', resolvers)
