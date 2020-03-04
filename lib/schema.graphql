@@ -12,3 +12,15 @@ type Course {
     description: String!
     topic: String
 }
+
+input CourseCreateInput {
+    title: String!
+    teacher: String
+    description: String!
+    topic: String
+}
+
+type Mutation {
+    "Create a course"
+    createCourse(input: CourseCreateInput!) : Course
+}

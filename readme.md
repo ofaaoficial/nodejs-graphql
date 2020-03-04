@@ -9,4 +9,5 @@ Comando para generar un nuevo proyecto
 
 Las query permiten hacer request a la API para obtener informacion, tiene la caracteristica de definir que consulta se quiere ejecutar y que campos de esa consulta se desean obtener.
 
+Las mutaciones son un mecanimos para insertar datos en el API. 
  
