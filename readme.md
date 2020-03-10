@@ -10,4 +10,32 @@ Comando para generar un nuevo proyecto
 Las query permiten hacer request a la API para obtener informacion, tiene la caracteristica de definir que consulta se quiere ejecutar y que campos de esa consulta se desean obtener.
 
 Las mutaciones son un mecanimos para insertar datos en el API. 
+
+```graphql
+# Alias
+# Sirve para renombrar consultas y ademas hacer varias a la vez.   
+ query Aliases{
+   allCourses: getCourses{
+     ...CourseFields
+   }
+   
+   Course1: getCourse(id: "5e67a92d1fd93b2db878c8f5"){
+     ...CourseFields
+     people {
+       _id
+       document
+     }
+   }
+ }
  
+
+# Fragments
+# Resume el codigo requerido por la query cuando se consultan campos iguales. 
+ fragment CourseFields on Course {
+ 	_id
+   title
+   description
+ }
+``` 
+
+
