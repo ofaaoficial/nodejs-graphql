@@ -3,6 +3,27 @@ type Query {
     getCourses: [Course]
     "Return especific course"
     getCourse(id: ID!): Course
+
+    "Return all students"
+    getStudents: [Student]
+    "Return especific students"
+    getStudent(id: ID!): Student
+}
+
+type Mutation {
+    "Create a course"
+    createCourse(input: CourseCreateInput!) : Course
+    "Update especific course"
+    updateCourse(id: ID!, input: CourseEditInput): Course
+    "Delete especific course"
+    deleteCourse(id: ID!): Course
+
+    "Create a student"
+    createStudent(input: StudentCreateInput!) : Student
+    "Update especific student"
+    updateStudent(id: ID!, input: StudentEditInput): Student
+    "Delete especific student"
+    deleteStudent(id: ID!): Student
 }
 
 type Course {
@@ -20,7 +41,28 @@ input CourseCreateInput {
     topic: String
 }
 
-type Mutation {
-    "Create a course"
-    createCourse(input: CourseCreateInput!) : Course
+input CourseEditInput {
+    title: String
+    teacher: String
+    description: String
+    topic: String
+}
+
+type Student {
+    _id: ID!
+    document: String!
+    name: String!
+    email: String
+}
+
+input StudentCreateInput {
+    document: String!
+    name: String!
+    email: String
+}
+
+input StudentEditInput {
+    document: String
+    name: String
+    email: String
 }
