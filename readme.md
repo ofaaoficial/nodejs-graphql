@@ -87,3 +87,60 @@ mutation createCourse ($createInput: CourseCreateInput!) {
   }
 }
 ```
+
+
+## Interfaces
+Nos permiten agrupar diferentes tipos y usarlos para relacionarlos con otros tipos.
+
+```graphql
+fragment personAttributes on Person {
+  _id
+  document
+  name
+  email
+}
+
+query allData{
+  Courses: getCourses{
+    _id
+    title
+    level
+  }
+  
+  People: getPeople{
+    ...personAttributes
+    ... on Monitor {
+      phone
+    }    
+  }
+  
+  FirstPerson: getPerson(id: "5e67a1b66f3b030e40343aec") {
+    ...personAttributes
+  }
+  
+	getMonitor: getPerson(id: "5e67f17f751ac21914866d9b") {
+  	...personAttributes
+    ... on Monitor {
+      phone
+    }
+  }
+    
+}
+
+mutation createMonitor($monitorInput: PersonCreateInput!){
+  createPerson(input: $monitorInput){
+    ...personAttributes    
+  }
+}
+
+# Query variables
+{
+  "monitorInput": {
+    "document": "122f345",
+    "name": "Oscar",
+    "email": "monitor@curso.xd",
+    "phone": "xd"
+  }
+}
+
+```

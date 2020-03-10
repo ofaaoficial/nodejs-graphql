@@ -4,10 +4,10 @@ type Query {
     "Return especific course"
     getCourse(id: ID!): Course
 
-    "Return all students"
-    getStudents: [Student]
-    "Return especific students"
-    getStudent(id: ID!): Student
+    "Return all persons"
+    getPeople: [Person]
+    "Return especific person"
+    getPerson(id: ID!): Person
 }
 
 type Mutation {
@@ -18,12 +18,12 @@ type Mutation {
     "Delete especific course"
     deleteCourse(id: ID!): Course
 
-    "Create a student"
-    createStudent(input: StudentCreateInput!) : Student
-    "Update especific student"
-    updateStudent(id: ID!, input: StudentEditInput): Student
-    "Delete especific student"
-    deleteStudent(id: ID!): Student
+    "Create a person"
+    createPerson(input: PersonCreateInput!) : Person
+    "Update especific person"
+    updatePerson(id: ID!, input: PersonEditInput): Person
+    "Delete especific person"
+    deletePerson(id: ID!): Person
 
     "Add person to course"
     addPersonToCourse(courseID: ID!, studentID: ID!): Course
@@ -62,21 +62,41 @@ input CourseEditInput {
     level: Level
 }
 
-type Student {
+interface Person {
     _id: ID!
     document: String!
     name: String!
     email: String
 }
 
-input StudentCreateInput {
+type Student implements Person{
+    _id: ID!
     document: String!
     name: String!
     email: String
+    avatar: String
 }
 
-input StudentEditInput {
+type Monitor implements Person{
+    _id: ID!
+    document: String!
+    name: String!
+    email: String
+    phone: String
+}
+
+input PersonCreateInput {
+    document: String!
+    name: String!
+    email: String
+    phone: String
+    avatar: String
+}
+
+input PersonEditInput {
     document: String
     name: String
     email: String
+    phone: String
+    avatar: String
 }
