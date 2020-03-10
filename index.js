@@ -4,9 +4,11 @@ require('dotenv').config();
 const {makeExecutableSchema} = require('graphql-tools');
 const express = require('express');
 const gqlMiddleware = require('express-graphql');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const isDev = process.env.NODE_ENV !== 'production';
 
 const {readFileSync} = require('fs');
 const {join} = require('path');
@@ -33,10 +35,12 @@ const schema = makeExecutableSchema({
 //         console.log(r);
 //     });
 
+app.use(cors());
+
 app.use('/api', gqlMiddleware({
     schema,
     rootValue: resolvers,
-    graphiql: true
+    graphiql: isDev
 }));
 
 app.listen(port, () => {
