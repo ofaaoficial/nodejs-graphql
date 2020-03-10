@@ -144,3 +144,26 @@ mutation createMonitor($monitorInput: PersonCreateInput!){
 }
 
 ```
+
+
+# Directivas
+Son instrucciones que permiten agregar validaciones a las queries.
+```graphql
+query getPeopleData($monitor: Boolean!, $avatar: Boolean!) {
+  getPeople{
+    _id
+    name
+    ... on Monitor @include(if: $monitor) {
+      phone
+    }
+    ... on Student @include(if: $avatar) {
+      avatar
+    }
+  }
+}
+# Query variables
+{
+  "monitor": true,
+  "avatar": true
+}
+```
