@@ -11,6 +11,8 @@ Las query permiten hacer request a la API para obtener informacion, tiene la car
 
 Las mutaciones son un mecanimos para insertar datos en el API. 
 
+
+## Alias & Fragments
 ```graphql
 # Alias
 # Sirve para renombrar consultas y ademas hacer varias a la vez.   
@@ -38,7 +40,7 @@ Las mutaciones son un mecanimos para insertar datos en el API.
  }
 ``` 
 
-Query variables
+## Query variables
 
 ```graphql
 mutation AddPersonToCourse ($course: ID!, $student: ID!) {
@@ -56,5 +58,32 @@ mutation AddPersonToCourse ($course: ID!, $student: ID!) {
 {
   "course": "5e67a92d1fd93b2db878c8f5",
   "student": "5e67a1b66f3b030e40343aec"
+}
+```
+
+
+## Variables of type input
+
+```graphql
+mutation createCourse ($createInput: CourseCreateInput!) {
+  createCourse(input: $createInput) {
+    _id
+    title
+    title
+    description
+    topic
+   	level
+  }
+}
+
+# query variables
+{
+  "createInput": {
+    "title": "Titulo de prueba",
+    "teacher": "Oscar Amado",
+    "description": "Descripcion del curso",
+    "topic": "Progra",
+    "level": "advanced"
+  }
 }
 ```

@@ -29,6 +29,13 @@ type Mutation {
     addPersonToCourse(courseID: ID!, studentID: ID!): Course
 }
 
+"Validations of type levels"
+enum Level {
+    beginner
+    middle
+    advanced
+}
+
 type Course {
     _id: ID!
     title: String!
@@ -36,6 +43,7 @@ type Course {
     description: String!
     topic: String
     people: [Student]
+    level: Level
 }
 
 input CourseCreateInput {
@@ -43,6 +51,7 @@ input CourseCreateInput {
     teacher: String
     description: String!
     topic: String
+    level: Level
 }
 
 input CourseEditInput {
@@ -50,6 +59,7 @@ input CourseEditInput {
     teacher: String
     description: String
     topic: String
+    level: Level
 }
 
 type Student {
