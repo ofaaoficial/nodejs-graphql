@@ -38,4 +38,23 @@ Las mutaciones son un mecanimos para insertar datos en el API.
  }
 ``` 
 
+Query variables
 
+```graphql
+mutation AddPersonToCourse ($course: ID!, $student: ID!) {
+  addPersonToCourse(courseID: $course studentID: $student) {
+    _id
+    title
+    people{
+      document
+      name
+    }
+  }
+}
+
+# Query Variables
+{
+  "course": "5e67a92d1fd93b2db878c8f5",
+  "student": "5e67a1b66f3b030e40343aec"
+}
+```

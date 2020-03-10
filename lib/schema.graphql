@@ -24,6 +24,9 @@ type Mutation {
     updateStudent(id: ID!, input: StudentEditInput): Student
     "Delete especific student"
     deleteStudent(id: ID!): Student
+
+    "Add person to course"
+    addPersonToCourse(courseID: ID!, studentID: ID!): Course
 }
 
 type Course {
