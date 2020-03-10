@@ -8,6 +8,9 @@ type Query {
     getPeople: [Person]
     "Return especific person"
     getPerson(id: ID!): Person
+
+    "Excec a global search"
+    searchItems(keyword: String!): [GlobalSearch]
 }
 
 type Mutation {
@@ -35,6 +38,8 @@ enum Level {
     middle
     advanced
 }
+
+union GlobalSearch = Course | Student | Monitor
 
 type Course {
     _id: ID!

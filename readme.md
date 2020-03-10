@@ -167,3 +167,36 @@ query getPeopleData($monitor: Boolean!, $avatar: Boolean!) {
   "avatar": true
 }
 ```
+
+## Union 
+```graphql
+
+query AllData {
+  getCourses {
+    title
+  }
+  getPeople {
+    name
+  }
+}
+
+query Search {
+  searchItems(keyword: "oscar") {
+    __typename    
+    ... on Course {
+      title
+      teacher
+      description
+    }
+    ... on Monitor {
+      document
+      name
+      phone
+    }
+    ... on Student {
+      document
+      email
+      avatar
+    }
+  }
+```
