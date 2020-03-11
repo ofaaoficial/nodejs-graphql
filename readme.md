@@ -1,15 +1,19 @@
-Grahpql Nodejs
+# Grahpql Nodejs
 
-Base de una API con graphql es un Esquema describe detalladamente todos los tipos de datos e informacion que tendra el API.
+La base de una API con graphql son los `esquemas` describen detalladamente todos los modelos, tipos de datos e información que tendrá el API.
 
-
-Comando para generar un nuevo proyecto
-
+* Comando para generar un nuevo proyecto
 `` npx license mit > LICENSE && npx gitignore node && git init && npm init -y ``
 
-Las query permiten hacer request a la API para obtener informacion, tiene la caracteristica de definir que consulta se quiere ejecutar y que campos de esa consulta se desean obtener.
+## Query
+Las `query` permiten hacer perticiones (Request) a la API para obtener información con la característica de definir que consulta quiere ejecutar y que campos de esa consulta desea obtener.
 
-Las mutaciones son un mecanimos para insertar datos en el API. 
+`Equivaldría al método GET en Rest APIs.`
+
+## Mutation
+Las mutaciones son un mecanimos para gestionar (Crear, Actualizar y Borrar) datos en el API. 
+
+`Equilvaldría a los métodos POST, PUT, DELETE, PATCH en Rest APIs.`
 
 
 ## Alias & Fragments
